@@ -1,0 +1,20 @@
+<mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened>
+        <form>
+            <mat-label>Categorías</mat-label>
+            <mat-selection-list 
+                #categoriasList 
+                name="categorias" 
+                [multiple]="false"
+                [(ngModel)]="selectedOptions" 
+                (ngModelChange)="onNgModelChange($event)">
+                @for(categorie of categories; track categorie) {
+                    <mat-list-option [value]="categorie">{{ categorie }}</mat-list-option>
+                }
+            </mat-selection-list>
+        </form>
+    </mat-drawer>
+    <mat-drawer-content>
+        <app-dashboard [categoria]="categoriaSeleccionada"></app-dashboard>
+    </mat-drawer-content>
+</mat-drawer-container>

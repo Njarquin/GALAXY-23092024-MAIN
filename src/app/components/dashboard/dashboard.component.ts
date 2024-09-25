@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { JokeService } from '../../services/joke.service';
 import { IJoke } from '../../models/joke.interface';
 import { Subscription } from 'rxjs';
@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   jokeIcon!: string;
   loading = true;
   subscriptions = new Subscription();
-
+  @Input() categoria!: string;
 
   constructor(private jokeService: JokeService) { }
 
@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getJoke(){
-    this.subscriptions.add(this.jokeService.getJoke().subscribe((joke: IJoke) => {
+    this.subscriptions.add(this.jokeService.getJoke(this.categoria).subscribe((joke: IJoke) => {
       this.jokeValue = joke.value;
       this.jokeIcon = joke.icon_url;
       this.loading = false;

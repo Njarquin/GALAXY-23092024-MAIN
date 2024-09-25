@@ -8,11 +8,16 @@ import { IJoke } from '../models/joke.interface';
 })
 export class JokeService {
 
-  url = 'https://api.chucknorris.io/jokes/random';
+  urlCategories = "https://api.chucknorris.io/jokes/categories";
+  urlJokes = 'https://api.chucknorris.io/jokes/random?category=';
 
   constructor(private http:HttpClient) {}
 
-  getJoke(): Observable<IJoke>{
-    return this.http.get<IJoke>(this.url);
+  getCategories(): Observable<string[]>{
+    return this.http.get<string[]>(this.urlCategories);
+  }
+
+  getJoke(categoria: string): Observable<IJoke>{
+    return this.http.get<IJoke>(this.urlJokes + categoria);
   }
 }
