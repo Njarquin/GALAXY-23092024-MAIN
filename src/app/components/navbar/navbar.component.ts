@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AboutMeComponent } from "../about-me/about-me.component";
 
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -8,6 +9,7 @@ import { AboutMeComponent } from "../about-me/about-me.component";
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
+
 export class NavbarComponent {
 
 }

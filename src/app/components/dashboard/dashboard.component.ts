@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { JokeService } from '../../services/joke.service';
 import { IJoke } from '../../models/joke.interface';
 import { Subscription } from 'rxjs';
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class DashboardComponent implements OnInit, OnDestroy, OnChanges {
 
   jokeValue!: string;
   jokeIcon!: string;
@@ -36,4 +36,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    this.getJoke();
+  }
 }
